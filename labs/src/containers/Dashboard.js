@@ -4,6 +4,7 @@ import Posts from "./Posts";
 import PostDetails from "../components/PostDetails";
 import NewPost from "../components/NewPost";
 import APIs from "../configs/apis";
+import { SelectedPostContext } from "../context/postContext";
 
 export default function Dashboard(props) {
   const [postsState, setPosts] = useState([
@@ -49,6 +50,10 @@ export default function Dashboard(props) {
 
   const fetchPostDetails = () => {
     //console.log("fetchPostDetails selectedPost: ", selectedPost);
+    if (!selectedPost.id) {
+      return;
+    }
+
     axios
       .get(APIs.postsUrl + "/" + selectedPost.id)
       .then((res) => {
@@ -89,17 +94,19 @@ export default function Dashboard(props) {
 
   return (
     <div className="">
-      <Posts posts={postsState} onSelect={onPostSelected} />
-      <div className="">
-        <hr />
-        <h2>Post Details</h2>
-        <PostDetails post={selectedPost} onDeleteClick={onDeletePostClick} />
-      </div>
-      <div className="">
-        <hr />
-        <h2>Add Post</h2>
-        <NewPost onAddPost={onAddPost} />
-      </div>
+      <SelectedPostContext.Provider value={selectedPost}>
+        <Posts posts={postsState} onSelect={onPostSelected} />
+        <div className="">
+          <hr />
+          <h2>Post Details</h2>
+          <PostDetails onDeleteClick={onDeletePostClick} />
+        </div>
+        <div className="">
+          <hr />
+          <h2>Add Post</h2>
+          <NewPost onAddPost={onAddPost} />
+        </div>
+      </SelectedPostContext.Provider>
     </div>
   );
 }

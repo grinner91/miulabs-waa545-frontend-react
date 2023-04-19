@@ -1,0 +1,21 @@
+LAB 9
+CS545 – React (Hooks update)
+
+Based on your previous lab, update the following
+
+-	Make the selected id for post a global value by using useContext()
+-	Make the NewPost form sent with useRef()
+
+Optional
+
+-	Make the Comment components render only when you render the PostDetails, it should not re-render unless the selected post (selected id) changes. 
+
+
+
+	
+
+
+
+
+
+
