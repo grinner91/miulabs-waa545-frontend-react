@@ -1,0 +1,21 @@
+LAB 8
+CS545 – React (Axios)
+
+Based on your previous lab, you will make calls with the back-end that you previously implemented. The calls should fetch the following:
+
+-	Get all posts from the back-end and render them on the DashBoard component under the Posts component. 
+-	Make the PostDetails fetch a specific Post and display its details.
+-	Make the delete button functional on the PostDetails, it should delete the selected post and update the fetched posts.
+-	Make a AddPost component, that will take the post title, author, and content and add it to the database on your back-end.
+
+Optional
+-	Make the PostDetails component render the comments, which you would have to create a Comment component
+
+
+	
+
+
+
+
+
+

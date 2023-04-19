@@ -5,7 +5,7 @@ import Dashboard from "./containers/Dashboard";
 function App() {
   return (
     <div className="App">
-      <header className="">Posts </header>
+      <header className="App-header">WAA545 React Labs </header>
       <Dashboard />
     </div>
   );

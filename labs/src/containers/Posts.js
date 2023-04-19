@@ -1,9 +1,9 @@
 import Post from "../components/Post";
 
 export default function Posts(props) {
-  console.log(props.posts);
+  //console.log(props.posts);
   const list = props.posts.map((p) => {
-    console.log(p);
+    //console.log(p);
     return (
       <Post
         key={p.id}
