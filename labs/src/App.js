@@ -1,12 +1,19 @@
-import logo from "./logo.svg";
+import { BrowserRouter } from "react-router-dom";
 import "./App.css";
 import Dashboard from "./containers/Dashboard";
+import PageRoutes from "./containers/PageRoutes";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">WAA545 React Labs </header>
-      <Dashboard />
+      <BrowserRouter>
+        {/* <div>
+          <Link to="/"> Posts</Link>
+          <Link to="/new-post"> New Post</Link>
+        </div> */}
+        <Dashboard></Dashboard>
+        <PageRoutes />
+      </BrowserRouter>
     </div>
   );
 }

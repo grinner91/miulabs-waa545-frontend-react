@@ -5,97 +5,103 @@ import PostDetails from "../components/PostDetails";
 import NewPost from "../components/NewPost";
 import APIs from "../configs/apis";
 import { SelectedPostContext } from "../context/postContext";
+import PageRoutes from "./PageRoutes";
+import { Link } from "react-router-dom";
 
 export default function Dashboard(props) {
-  const [postsState, setPosts] = useState([
-    // { id: 1, title: "MIU", author: "Zaman" },
-    // { id: 2, title: "Happiness", author: "Rafsan" },
-    // { id: 3, title: "Fullfilment", author: "Monir" },
-  ]);
+  // const [postsState, setPosts] = useState([
+  //   { id: 1, title: "MIU", author: "Zaman" },
+  //   { id: 2, title: "Happiness", author: "Rafsan" },
+  //   { id: 3, title: "Fullfilment", author: "Monir" },
+  // ]);
 
-  const [selectedPost, setSelectedPost] = useState({ ...postsState[0] });
-  const [reloadPosts, setReloadPosts] = useState(false);
+  const [selectedPost, setSelectedPost] = useState({});
+  const [selectedStudents, setSelectedStudents] = useState([]);
+  //const [selectedStudents, setSelectedStudents] = useState([]);
 
-  useEffect(() => {
-    fetchAllPosts();
-  }, []);
+  //const [reloadPosts, setReloadPosts] = useState(false);
 
-  useEffect(() => {
-    fetchAllPosts();
-  }, [reloadPosts]);
+  // useEffect(() => {
+  //   fetchAllPosts();
+  // }, []);
 
-  useEffect(() => {
-    fetchPostDetails();
-  }, [selectedPost]);
+  // useEffect(() => {
+  //   fetchAllPosts();
+  // }, [reloadPosts]);
 
-  const fetchAllPosts = () => {
-    axios
-      .get(APIs.postsUrl)
-      .then((res) => {
-        setPosts(res.data);
-        console.log("fetech posts data: ", res.data);
-      })
-      .catch((err) => {
-        console.log("fetech posts error: ", err);
-      });
-  };
+  // useEffect(() => {
+  //   fetchPostDetails();
+  // }, [selectedPost]);
 
-  const onPostSelected = (id) => {
-    //console.log("selected post id: ", id);
-    const post = filterPostById(id);
-    //console.log("filter selected post: ", post);
-    //console.log(post);
-    setSelectedPost(post);
-  };
+  // const fetchAllPosts = () => {
+  //   axios
+  //     .get(APIs.postsUrl)
+  //     .then((res) => {
+  //       setPosts(res.data);
+  //       console.log("fetech posts data: ", res.data);
+  //     })
+  //     .catch((err) => {
+  //       console.log("fetech posts error: ", err);
+  //     });
+  // };
 
-  const fetchPostDetails = () => {
-    //console.log("fetchPostDetails selectedPost: ", selectedPost);
-    if (!selectedPost.id) {
-      return;
-    }
+  // const onPostSelected = (id) => {
+  //   //console.log("selected post id: ", id);
+  //   const post = filterPostById(id);
+  //   //console.log("filter selected post: ", post);
+  //   //console.log(post);
+  //   setSelectedPost(post);
+  // };
 
-    axios
-      .get(APIs.postsUrl + "/" + selectedPost.id)
-      .then((res) => {
-        console.log("fetech fetchPostDetails data: ", res.data);
-        //setSelectedPost({ ...res.data });
-      })
-      .catch((err) => {
-        console.log("fetech fetchPostDetails error: ", err);
-      });
-  };
+  // const fetchPostDetails = () => {
+  //   //console.log("fetchPostDetails selectedPost: ", selectedPost);
+  //   if (!selectedPost.id) {
+  //     return;
+  //   }
 
-  const onDeletePostClick = (event) => {
-    deletePostDetails();
-  };
+  //   axios
+  //     .get(APIs.postsUrl + "/" + selectedPost.id)
+  //     .then((res) => {
+  //       console.log("fetech fetchPostDetails data: ", res.data);
+  //       //setSelectedPost({ ...res.data });
+  //     })
+  //     .catch((err) => {
+  //       console.log("fetech fetchPostDetails error: ", err);
+  //     });
+  // };
 
-  const deletePostDetails = (event) => {
-    //console.log("deletePostDetails");
-    axios
-      .delete(APIs.postsUrl + "/" + selectedPost.id)
-      .then((res) => {
-        console.log(" deletePostDetails data: ", res.data);
-        setReloadPosts(!reloadPosts);
-        setSelectedPost({});
-      })
-      .catch((err) => {
-        console.log(" deletePostDetails error: ", err);
-      });
-  };
+  // const onDeletePostClick = (event) => {
+  //   deletePostDetails();
+  // };
 
-  const onAddPost = () => {
-    console.log("Dashboard onAddPost");
-    setReloadPosts(!reloadPosts);
-  };
+  // const deletePostDetails = (event) => {
+  //   //console.log("deletePostDetails");
+  //   axios
+  //     .delete(APIs.postsUrl + "/" + selectedPost.id)
+  //     .then((res) => {
+  //       console.log(" deletePostDetails data: ", res.data);
+  //       setReloadPosts(!reloadPosts);
+  //       setSelectedPost({});
+  //     })
+  //     .catch((err) => {
+  //       console.log(" deletePostDetails error: ", err);
+  //     });
+  // };
 
-  function filterPostById(id) {
-    return { ...postsState.filter((p) => "" + p.id === "" + id)[0] };
-  }
+  // const onAddPost = () => {
+  //   console.log("Dashboard onAddPost");
+  //   setReloadPosts(!reloadPosts);
+  // };
+
+  // function filterPostById(id) {
+  //   return { ...postsState.filter((p) => "" + p.id === "" + id)[0] };
+  // }
 
   return (
     <div className="">
-      <SelectedPostContext.Provider value={selectedPost}>
-        <Posts posts={postsState} onSelect={onPostSelected} />
+      <header className="App-header">WAA545 React Labs </header>
+      <SelectedPostContext.Provider value={{ selectedPost, setSelectedPost }}>
+        {/* <Posts posts={postsState} onSelect={onPostSelected} />
         <div className="">
           <hr />
           <h2>Post Details</h2>
@@ -105,7 +111,13 @@ export default function Dashboard(props) {
           <hr />
           <h2>Add Post</h2>
           <NewPost onAddPost={onAddPost} />
+        </div> */}
+        <div>
+          <Link to="/"> Posts</Link>|
+          <Link to="/post-details">Post Details</Link>
+          <Link to="/new-post"> New Post</Link>
         </div>
+        {/* <PageRoutes /> */}
       </SelectedPostContext.Provider>
     </div>
   );
